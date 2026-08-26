@@ -1,31 +1,30 @@
 function createtable() {
-    const num=document.getElementById("num");
+    const num = document.getElementById("num");
     const value = Number(num.value);
     const tableArea = document.getElementById("tableArea");
-    let table=document.getElementById("Table");
-    if(!table){
-    table = document.createElement("table");
-    table.id="Table";
+    let table = document.getElementById("Table");
+    if (!table) {
+        table = document.createElement("table");
+        table.id = "Table";
     }
-    table.innerHTML="";
-    const caption=document.createElement("caption");
-    const typelist=document.querySelector('input[name=typelist]:checked').value;
-    caption.innerHTML="<h3>Class "+typelist+"ies List</h3>";
+    table.innerHTML = "";
+    const caption = document.createElement("caption");
+    const typelist = document.querySelector('input[name="typelist"]:checked').value;
+    caption.innerHTML = "<h3>Class " + typelist + "ies List</h3>";
     table.appendChild(caption);
     const rows = Math.ceil(value / 10);
     for (let i = 0; i < rows; i++) {
         const row = document.createElement("tr");
-        if(i===rows-1 && value%10!=0){
-            for(let j=0;j<value%10;j++){
+        if (i === rows - 1 && value % 10 !== 0) {
+            for (let j = 0; j < value % 10; j++) {
                 const cell = document.createElement("td");
-                cell.innerText="";
+                cell.innerText = "";
                 row.appendChild(cell);
             }
-        }
-        else{
+        } else {
             for (let j = 0; j < 10; j++) {
                 const cell = document.createElement("td");
-                cell.innerText="";
+                cell.innerText = "";
                 row.appendChild(cell);
             }
         }
@@ -33,99 +32,100 @@ function createtable() {
     }
     tableArea.appendChild(table);
 }
-
-function addValue(){
-    const num=document.getElementById("val");
-    const value=Number(num.value);
-    const table=document.querySelector("#tableArea table");
-    const row=Math.floor((value-1)/10);
-    const col=(value-1)%10;
-    table.rows[row].cells[col].innerText=value;
-    num.value="";
+function addValue() {
+    const num = document.getElementById("val");
+    const value = Number(num.value);
+    const table = document.querySelector("#tableArea table");
+    const row = Math.floor((value - 1) / 10);
+    const col = (value - 1) % 10;
+    if (table && table.rows[row] && table.rows[row].cells[col]) {
+        table.rows[row].cells[col].innerText = value;
+    }
+    num.value = "";
 }
-
-function remValue(){
-    const num=document.getElementById("remval");
-    const value=Number(num.value);
-    const table=document.querySelector("#tableArea table");
-    const row=Math.floor((value-1)/10);
-    const col=(value-1)%10;
-    table.rows[row].cells[col].innerText="";
-    num.value="";
+function remValue() {
+    const num = document.getElementById("remval");
+    const value = Number(num.value);
+    const table = document.querySelector("#tableArea table");
+    const row = Math.floor((value - 1) / 10);
+    const col = (value - 1) % 10;
+    if (table && table.rows[row] && table.rows[row].cells[col]) {
+        table.rows[row].cells[col].innerText = "";
+    }
+    num.value = "";
 }
-
 function finalList() {
-    const opt=document.querySelector('input[name=attendance]:checked').value;
-    const typelist=document.querySelector('input[name=typelist]:checked').value;
-    const textArea=document.getElementById("textArea");
-    let textBox=document.getElementById("textB");
-    const num=document.getElementById("num");
-    const value=Number(num.value);
-    if(!textBox){
-        textBox=document.createElement("textarea");
-        textBox.id="textB";
-        textBox.rows=5;
-        textBox.cols=40;
-        textBox.readOnly=true;
+    const opt = document.querySelector('input[name="attendance"]:checked').value;
+    const typelist = document.querySelector('input[name="typelist"]:checked').value;
+    const textArea = document.getElementById("textArea");
+    let textBox = document.getElementById("textB");
+    const num = document.getElementById("num");
+    const value = Number(num.value);
+    if (!textBox) {
+        textBox = document.createElement("textarea");
+        textBox.id = "textB";
+        textBox.rows = 5;
+        textBox.cols = 40;
+        textBox.readOnly = true;
     }
-    textBox.value="";
-    const table=document.querySelector("#tableArea table");
+    textBox.value = "";
+    const table = document.querySelector("#tableArea table");
+    if (!table) {
+        return;
+    }
     const rows = Math.ceil(value / 10);
-    if(opt===typelist && opt==="present"){
+    if (opt === typelist && opt === "present") {
+        FilledList();
+    } else if (opt !== typelist && opt === "abscent") {
+        EmptyList();
+    } else if (opt !== typelist && opt === "present") {
+        EmptyList();
+    } else {
         FilledList();
     }
-    else if(opt!==typelist && opt==="abscent"){
-        EmptyList();
-    }
-    else if(opt!==typelist && opt==="present"){
-        EmptyList();
-    }
-    else{
-        FilledList();
-    }
-    function FilledList(){
+    function FilledList() {
         for (let i = 0; i < rows; i++) {
-            if(i===rows-1 && value%10!=0){
-                for(let j=0;j<value%10;j++){
-                    let val=table.rows[i].cells[j].innerText;
-                    if(val){
-                        textBox.value+=val+" , ";
+            if (i === rows - 1 && value % 10 !== 0) {
+                for (let j = 0; j < value % 10; j++) {
+                    let val = table.rows[i].cells[j].innerText;
+                    if (val) {
+                        textBox.value += val + " , ";
                     }
                 }
-            }
-            else{
-                for(let j=0;j<10;j++){
-                    let val=table.rows[i].cells[j].innerText;
-                    if(val){
-                        textBox.value+=val+", ";
+            } else {
+                for (let j = 0; j < 10; j++) {
+                    let val = table.rows[i].cells[j].innerText;
+                    if (val) {
+                        textBox.value += val + ", ";
                     }
                 }
             }
         }
     }
-    function EmptyList(){
+    function EmptyList() {
         for (let i = 0; i < rows; i++) {
-            if(i===rows-1 && value%10!=0){
-                for(let j=0;j<value%10;j++){
-                    let val=table.rows[i].cells[j].innerText;
-                    if(!val){
-                        textBox.value+=i*10+(j+1)+", ";
+            if (i === rows - 1 && value % 10 !== 0) {
+                for (let j = 0; j < value % 10; j++) {
+                    let val = table.rows[i].cells[j].innerText;
+                    if (!val) {
+                        textBox.value += i * 10 + (j + 1) + ", ";
                     }
                 }
-            }
-            else{
-                for(let j=0;j<10;j++){
-                    let val=table.rows[i].cells[j].innerText;
-                    if(!val){
-                        textBox.value+=i*10+(j+1)+", ";
+            } else {
+                for (let j = 0; j < 10; j++) {
+                    let val = table.rows[i].cells[j].innerText;
+                    if (!val) {
+                        textBox.value += i * 10 + (j + 1) + ", ";
                     }
                 }
             }
         }
     }
-    let text=textBox.value;
-    text=text.trim();
-    text=text.slice(0,text.length-1)+".";
-    textBox.value=text;
+    let text = textBox.value;
+    text = text.trim();
+    if (text.length > 0) {
+        text = text.slice(0, text.length - 1) + ".";
+    }
+    textBox.value = text;
     textArea.appendChild(textBox);
 }
