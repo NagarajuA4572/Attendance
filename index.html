@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title> Attendance Monitoring</title>
+    </head>
+    <body>
+        <link rel="stylesheet" href="attendance.css">
+        <center><h1>C2 class Attendance</h1></center>
+        <label>Enter class strength: </label><input type="number" id="num"><br>
+        <input type="radio" name="typelist" value="present">Presenties List 
+        <input type="radio" name="typelist" value="abscent">Abscenties List   <button onclick="createtable()">✔</button>
+        <div id="tableArea">
+        </div><br>
+        <label>Roll No: </label><input type="number" id="val">  <button onclick="addValue()">✔</button>
+        <label>Remove No: </label><input type="number" id="remval">  <button onclick="remValue()">✔</button><br><br>
+        <input type="radio" name="attendance" value="present" onchange="finalList()">Presenties <br>
+        <input type="radio" name="attendance" value="abscent" onchange="finalList()">Abscenties <br>
+        <div id="textArea"></div>
+        <script src="attendance.js"></script>
+    </body>
+</html>
