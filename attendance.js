@@ -131,6 +131,7 @@ function finalList() {
     textBox.value = text;
     const button=document.createElement("button");
     button.onclick="copyText(textBox.value)";
+    button.value="Copy";
     textArea.appendChild(textBox);
     textArea.appendChild(button);
 }
