@@ -134,7 +134,7 @@ function finalList() {
         button=document.createElement("button");
         button.textContent="Copy";
     }
-    button.onclick="copyText(textBox.value)";
+    button.onclick=()=> copyText(textBox.value);
     textArea.appendChild(textBox);
     textArea.appendChild(button);
 }
