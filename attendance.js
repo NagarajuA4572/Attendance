@@ -129,7 +129,14 @@ function finalList() {
         text = text.slice(0, text.length - 1) + ".";
     }
     textBox.value = text;
+    const button=document.createElement("button");
+    button.onclick="copyText(textBox.value)";
     textArea.appendChild(textBox);
+    textArea.appendChild(button);
+}
+
+function copyText(text){
+    navigator.clipboard.writeText(text);
 }
 
 function handleAddEnter(event){
