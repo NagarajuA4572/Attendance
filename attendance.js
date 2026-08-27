@@ -132,10 +132,10 @@ function finalList() {
     let button=document.getElementById("cpbutton");
     if(!button){
         button=document.createElement("button");
-        button.id="cpbutton";
         button.textContent="Copy";
+        button.id="cpbutton";
     }
-    button.onclick=()=> copyText(textBox.value);
+    button.onclick=()=>copyText(textBox.value);
     textArea.appendChild(textBox);
     textArea.appendChild(button);
 }
@@ -143,8 +143,8 @@ function finalList() {
 function copyText(text){
     navigator.clipboard.writeText(text).then(()=>{
         const toast=document.getElementById("toast");
-        toast.textContent="Copied";
-        toast.classList("show");
+        toast.textContent="Copied!";
+        toast.classList.add("show");
         setTimeout(()=>{
             toast.classList.remove("show");
         },2000);
