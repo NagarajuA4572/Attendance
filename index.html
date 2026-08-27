@@ -21,10 +21,10 @@
     <div id="tableArea"></div>
     <br>
     <label>Roll No: </label>
-    <input type="number" id="val">
+    <input type="number" id="val" onkeydown="handleAddEnter(event)">
     <button onclick="addValue()">✔</button><br>
     <label>Remove No: </label>
-    <input type="number" id="remval">
+    <input type="number" id="remval" onkeydown="handleRemEnter(event)">
     <button onclick="remValue()">✔</button>
     <br><br>
     <input
