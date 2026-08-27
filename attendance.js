@@ -129,9 +129,12 @@ function finalList() {
         text = text.slice(0, text.length - 1) + ".";
     }
     textBox.value = text;
-    const button=document.createElement("button");
+    let button=document.getElementById("cpbutton");
+    if(!button){
+        button=document.createElement("button");
+        button.value="Copy";
+    }
     button.onclick="copyText(textBox.value)";
-    button.value="Copy";
     textArea.appendChild(textBox);
     textArea.appendChild(button);
 }
