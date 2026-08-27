@@ -78,7 +78,7 @@ function finalList() {
     const rows = Math.ceil(value / 10);
     if (opt === typelist && opt === "present") {
         FilledList();
-    } else if (opt !== typelist && opt === "abscent") {
+    } else if (opt !== typelist && opt === "absent") {
         EmptyList();
     } else if (opt !== typelist && opt === "present") {
         EmptyList();
