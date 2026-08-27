@@ -132,6 +132,7 @@ function finalList() {
     let button=document.getElementById("cpbutton");
     if(!button){
         button=document.createElement("button");
+        button.id="cpbutton";
         button.textContent="Copy";
     }
     button.onclick=()=> copyText(textBox.value);
