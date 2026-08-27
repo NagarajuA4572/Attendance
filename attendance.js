@@ -41,6 +41,7 @@ function addValue() {
     if (table && table.rows[row] && table.rows[row].cells[col]) {
         table.rows[row].cells[col].innerText = value;
     }
+    num.focus();
     num.value = "";
 }
 function remValue() {
@@ -52,6 +53,7 @@ function remValue() {
     if (table && table.rows[row] && table.rows[row].cells[col]) {
         table.rows[row].cells[col].innerText = "";
     }
+    num.focus();
     num.value = "";
 }
 function finalList() {
@@ -128,4 +130,18 @@ function finalList() {
     }
     textBox.value = text;
     textArea.appendChild(textBox);
+}
+
+function handleAddEnter(event){
+    if(event.key==="Enter"){
+        event.preventDefault();
+        addValue();
+    }
+}
+
+function handleRemEnter(event){
+    if(event.key==="Enter"){
+        event.preventDefault();
+        remValue();
+    }
 }
