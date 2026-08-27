@@ -132,7 +132,7 @@ function finalList() {
     let button=document.getElementById("cpbutton");
     if(!button){
         button=document.createElement("button");
-        button.value="Copy";
+        button.textContent="Copy";
     }
     button.onclick="copyText(textBox.value)";
     textArea.appendChild(textBox);
@@ -140,7 +140,14 @@ function finalList() {
 }
 
 function copyText(text){
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text).then(()=>{
+        const toast=document.getElementById("toast");
+        toast.textContent="Copied";
+        toast.classList("show");
+        setTimeout(()=>{
+            toast.classList.remove("show");
+        },2000);
+    })
 }
 
 function handleAddEnter(event){
